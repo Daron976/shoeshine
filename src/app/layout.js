@@ -1,16 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 
-export async function merch() {
-  const res = await fetch("http://127.0.0.1:5000/api/v1/merch");
-
-  if (!res) {
-    throw new Error("Something went wrong");
-  }
-
-  return res.json();
-}
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -19,7 +9,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const data = await merch();
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>

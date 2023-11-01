@@ -1,0 +1,145 @@
+.contactSubmission {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 35rem;
+}
+
+.content {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  gap: 1rem;
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.contactForm {
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.formInput {
+  gap: 1rem;
+  width: 100%;
+}
+
+.formInput input {
+  background: none;
+  height: 2.5rem;
+  width: 20rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.formInput input::placeholder,
+#formSubmission textarea::placeholder {
+  vertical-align: text-top;
+  color: black;
+}
+
+#formSubmission textarea {
+  padding: 1rem;
+  width: 41rem;
+  height: 7rem;
+  border-radius: 5px;
+  background: none;
+  /* border: 1px solid black; */
+}
+
+#formSubmission input:focus,
+#formSubmission textarea:focus {
+  outline: none;
+}
+
+.formSubmission {
+  justify-content: flex-end;
+}
+
+.submitBtn {
+  align-items: center;
+  background-color: black;
+  background-position: 0 0;
+  border: none;
+  box-sizing: border-box;
+  color: #d33a2c;
+  font-size: 1rem;
+  height: 35px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+  touch-action: manipulation;
+  border-radius: 8px;
+  width: 100px;
+}
+
+.errorMsg {
+  justify-content: center;
+}
+
+.errorMsg p {
+  padding: 0.5rem;
+  border-radius: 5px;
+  color: #c30d00;
+  background: #f4433641;
+}
+
+.notValid {
+  background: #f4433641 !important;
+  box-shadow: 0 4px 30px rgb(0 0 0 / 22%);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgb(255 255 255 / 0%);
+}
+
+@media screen and (max-width: 768px) {
+  .content h1 {
+    font-size: 2.5rem;
+  }
+
+  .formInput Input {
+    width: 15rem;
+  }
+
+  #formSubmission textarea {
+    width: 31rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .wrapper {
+    margin: 0 !important;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .formInput {
+    flex-direction: column;
+  }
+
+  .formInput Input,
+  #formSubmission textarea {
+    width: 20rem;
+  }
+
+  .formSubmission {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .formInput Input,
+  #formSubmission textarea {
+    width: 15rem;
+  }
+}

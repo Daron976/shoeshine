@@ -1,8 +1,6 @@
 "use client";
-// import Link from "next/link";
 import styles from "./authentication.module.css";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import Image from "next/image";
 import flicker from "../../../public/flicker.png";
 
@@ -23,8 +21,6 @@ export default function Authenticate() {
             <div className={styles.filterDiv}></div>
             <Image
               src={flicker}
-              width={400}
-              height={350}
               quality={100}
               alt="art work"
               className={

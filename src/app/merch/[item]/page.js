@@ -1,25 +1,43 @@
-"use client";
 import styles from "./item.module.css";
-import shoe from "../../../public/men.jpg";
-import { data } from "../components/data";
+import { data } from "../../components/data";
 import Link from "next/link";
-import Image from "next/image";
+import { merch } from "@/app/components/Merch";
+import { notFound } from "next/navigation";
 
-export default function Authenticate() {
+export async function generateStaticParams() {
+  const res = await fetch("http://127.0.0.1:5000/api/v1/merch");
+
+  const merchItems = await res.json();
+
+  return merchItems.map((item) => ({
+    id: item.id,
+  }));
+}
+
+export default async function SingleItem({ params }) {
+  const item = parseInt(params.item);
+
+  const products = await merch();
+
+  const product = await products.find((el) => el.id === item);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
     <>
       <main className={styles.main}>
         <section className={`${styles.singleItemContainer} flex`}>
           <div className={`${styles.singleItemWrapper} flex`}>
             <div className={`${styles.imageContainer} flex`}>
+              
               <ul className={`${styles.multiImageContainer} flex`}>
-                {data.slice(0, 5).map((item, idx) => {
+                {data.slice(0, 4).map((item, idx) => {
                   return (
                     <li key={idx}>
-                      <Image
-                        src={shoe}
-                        width={70}
-                        height={70}
+                      <img
+                        src={product.image}
                         alt="product variations"
                         className={styles.variation}
                       />
@@ -27,27 +45,18 @@ export default function Authenticate() {
                   );
                 })}
               </ul>
-              {/* <div className={styles.mainImage}> */}
-              <Image
-                src={shoe}
-                width={470}
-                heigth={300}
-                quality={100}
+              <img
+                src={product.image}
+                alt="item Image"
                 className={styles.image}
               />
-              {/* </div> */}
+              <h1 className={styles.mobileHeader}>{product.name}</h1>
             </div>
             <article className={`${styles.productInfo} flex`}>
-              <h1>Adidas Adifoam TRXN</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <h1 className={styles.desktopHeader}>{product.name}</h1>
+              <p
+                className={styles.productDescription}
+              >{`${product.description.slice(0, 200)}...`}</p>
               <ul className={`${styles.sizeContainer} flex`}>
                 <li className={styles.sizeItem}>Uk 6</li>
                 <li className={styles.sizeItem}>Uk 7</li>
@@ -57,7 +66,7 @@ export default function Authenticate() {
                 <li className={styles.sizeItem}>Uk 11</li>
               </ul>
               <p className={styles.price}>
-                <strong>$ 165</strong>
+                <strong>{`$ ${product.price}`}</strong>
               </p>
               <div className={`${styles.addContainer} flex`}>
                 <button
@@ -86,9 +95,6 @@ export default function Authenticate() {
                 <article
                   key={idx}
                   className={`${styles.productItem} flex scrollContainer`}
-                  // style={{
-                  //   transform: `translateX(${csl}px)`,
-                  // }}
                 >
                   <img
                     src={product.image}
@@ -98,7 +104,7 @@ export default function Authenticate() {
                   <p className={styles.productDesc}>{product.name}</p>
                   <div className={`${styles.viewLink} flex`}>
                     <small>{`$ ${product.price}`}</small>
-                    <Link href={"/"}>
+                    <Link href={`/merch/${product.id}`}>
                       <button
                         type="button"
                         name="itemView"
@@ -112,13 +118,15 @@ export default function Authenticate() {
               );
             })}
           </div>
-          <button
-            type="button"
-            name="itemView"
-            className={`${styles.viewMore}`}
-          >
-            View More
-          </button>
+          <Link href={"/merch"} className={styles.viewMoreCont}>
+            <button
+              type="button"
+              name="itemView"
+              className={`${styles.viewMore}`}
+            >
+              View More
+            </button>
+          </Link>
         </section>
       </main>
     </>

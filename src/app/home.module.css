@@ -16,7 +16,12 @@
   justify-content: center;
   align-items: center;
   color: white;
-  gap: 5rem;
+  transition: all;
+  transition-duration: 1s;
+}
+
+.flicker {
+  display: none;
 }
 
 .welcomeHeader {
@@ -25,16 +30,18 @@
 }
 
 .welcomeHeader h1 {
-  font-size: 5rem;
-  width: 30rem;
+  font-size: 4rem;
+  max-width: 30rem;
 }
 
 .welMsg {
   margin-bottom: 10rem;
 }
 
-.welcomeContent img {
+.welcomeImg {
   transform: rotate(-45deg);
+  width: 600px;
+  height: 500px;
 }
 
 .article Img {
@@ -87,6 +94,10 @@
   background-color: #f7fafa;
 }
 
+.categoriesContainer h2 {
+  padding: 3.5rem 5rem;
+}
+
 .productItemContainer {
   align-items: center;
   justify-content: flex-start;
@@ -94,7 +105,6 @@
   transition: all;
   transition-duration: 1s;
   max-width: 1344px;
-  height: 500px;
   overflow-x: hidden;
   overflow-y: clip;
   padding: 1.5rem;
@@ -121,6 +131,7 @@
 
 .productItem img {
   width: 100%;
+  height: 70%;
 }
 
 .productItem p {
@@ -151,11 +162,15 @@
   border-bottom-right-radius: 8px;
 }
 
+.categoriesContainer {
+  margin: 1rem 0 5rem;
+  flex-direction: column;
+}
+
 .categories {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  height: 100vh;
 }
 
 button.catItem {
@@ -197,9 +212,9 @@ button.catItem:hover {
 
 .catContainer {
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
   width: 300px;
-  height: 700px;
 }
 
 .catContainer button {
@@ -211,4 +226,160 @@ button.catItem:hover {
   background: url("../../public/popular.jpg");
   width: 650px;
   height: 700px;
+}
+
+@media only screen and (max-width: 1440px) {
+  .popular {
+    width: 400px;
+    height: 500px;
+  }
+
+  .unisex {
+    width: 300px;
+    height: 500px;
+  }
+
+  .catContainer button {
+    height: 242px;
+  }
+
+  .productItemContainer {
+    width: 1012px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .welcomeContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flicker {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background: #ffffff1a;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+
+  .welcomeHeader {
+    padding: 1rem;
+    z-index: 1;
+    border-radius: 10px;
+  }
+
+  .welcomeHeader h1 {
+    text-align: left;
+  }
+
+  .welMsg {
+    margin: 0;
+  }
+
+  .welcomeImg {
+    z-index: 0;
+    position: absolute;
+  }
+
+  .popular {
+    width: 300px;
+    height: 400px;
+  }
+
+  .unisex {
+    width: 192px;
+    height: 400px;
+  }
+
+  .catContainer button {
+    height: 192px;
+  }
+
+  .productItemContainer {
+    width: 680px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .welcomeContent {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .welcomeHeader {
+    margin: 0;
+  }
+
+  .productItemContainer {
+    width: 348px;
+  }
+
+  .categories {
+    flex-direction: column;
+  }
+
+  .catContainer {
+    align-items: center;
+    height: auto;
+    width: 100%;
+  }
+
+  .popularContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .catAnchor {
+    width: 80%;
+  }
+
+  .catItem {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .welcomeHeader {
+    width: 90%;
+  }
+
+  .welcomeHeader h1 {
+    font-size: 2.5rem;
+  }
+
+  .welcomeImg {
+    width: 300px;
+    height: 250px;
+  }
+
+  .availableStockHeader,
+  .categoriesContainer h2 {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .merchContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .cslBtn {
+    width: 300px;
+    height: 3rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .welcomeImg {
+    width: 250px;
+    height: 250px;
+  }
 }

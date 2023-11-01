@@ -4,12 +4,9 @@ import flicker from "../../public/flicker.png";
 import Image from "next/image";
 import { AiOutlineRight } from "react-icons/ai";
 import { AiOutlineLeft } from "react-icons/ai";
-// import Merch, { merch } from "./components/Merch";
 import { useState } from "react";
 import { data } from "./components/data";
 import Link from "next/link";
-
-// const products = await merch();
 
 export default function Home() {
   const [csl, setCsl] = useState(0);
@@ -17,21 +14,18 @@ export default function Home() {
   return (
     <main className={`${styles.content} flex column`} data-testid="home">
       <section className={`${styles.welcomeContent} flex`}>
+        <div className={styles.flicker}></div>
         <div className={styles.welcomeHeader}>
           <h1>Lorem ipsum dolor sit amet.</h1>
           <p className={`appear ${styles.welMsg}`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do{" "}
-            <br />
-            Discover Art
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           </p>
         </div>
         <Image
           src={flicker}
-          width={800}
-          height={600}
           quality={100}
           alt="art work"
-          className="Img"
+          className={styles.welcomeImg}
         />
       </section>
       <section className={`${styles.availableStock}`}>
@@ -65,7 +59,7 @@ export default function Home() {
                   <p className={styles.productDesc}>{product.name}</p>
                   <div className={`${styles.viewLink} flex`}>
                     <small>{`$ ${product.price}`}</small>
-                    <Link href={"/"}>
+                    <Link href={`/merch/${product.id}`}>
                       <button
                         type="button"
                         name="itemView"
@@ -90,38 +84,49 @@ export default function Home() {
             <AiOutlineRight />
           </button>
         </div>
-        <div className={`${styles.categories} flex`}>
-          <button
-            type="button"
-            name="category"
-            className={`${styles.unisex} ${styles.catItem} flex`}
-          >
-            <h2>Unisex</h2>
-          </button>
-          <div className={`${styles.catContainer} flex`}>
-            <button
-              type="button"
-              name="mens"
-              className={`${styles.male} ${styles.catItem} flex`}
-            >
-              <h2>Men</h2>
-            </button>
-            <button
-              type="button"
-              name="women"
-              className={`${styles.female} ${styles.catItem} flex`}
-            >
-              <h2>Women</h2>
-            </button>
-          </div>
-          <div className={styles.popularContainer}>
-            <button
-              type="button"
-              name="popular"
-              className={`${styles.popular} ${styles.catItem} flex`}
-            >
-              <h2>Popular</h2>
-            </button>
+        <div className={`${styles.categoriesContainer} flex`}>
+          <h2>Categories</h2>
+          <div className={`${styles.categories} flex`}>
+            <Link href={"/unisex"} className={styles.catAnchor}>
+              <button
+                type="button"
+                name="category"
+                className={`${styles.unisex} ${styles.catItem} flex`}
+              >
+                <h2>Unisex</h2>
+              </button>
+            </Link>
+            <div className={`${styles.catContainer} flex`}>
+              <Link href={"/men"} className={styles.catAnchor}>
+                <button
+                  type="button"
+                  name="mens"
+                  className={`${styles.male} ${styles.catItem} flex`}
+                >
+                  <h2>Men</h2>
+                </button>
+              </Link>
+              <Link href={"/women"} className={styles.catAnchor}>
+                <button
+                  type="button"
+                  name="women"
+                  className={`${styles.female} ${styles.catItem} flex`}
+                >
+                  <h2>Women</h2>
+                </button>
+              </Link>
+            </div>
+            <div className={styles.popularContainer}>
+              <Link href={"/popular"} className={styles.catAnchor}>
+                <button
+                  type="button"
+                  name="popular"
+                  className={`${styles.popular} ${styles.catItem} flex`}
+                >
+                  <h2>Popular</h2>
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

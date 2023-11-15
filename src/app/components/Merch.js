@@ -7,27 +7,3 @@ export async function merch() {
 
   return res.json();
 }
-
-export default async function Merch({ styles, cslVal }) {
-  const data = await merch();
-
-  const sliceVal = cslVal ? cslVal : 0;
-
-  return (
-    <>
-      {data.slice(sliceVal, sliceVal + 3).map((product, idx) => {
-        return (
-          <article key={idx} className={`${styles.productItem} flex`}>
-            <img
-              src={product.image}
-              alt={product.name}
-              className={styles.productImage}
-            />
-            <p className={styles.productDesc}>{product.name}</p>
-            <small>{`$ ${product.price}`}</small>
-          </article>
-        );
-      })}
-    </>
-  );
-}

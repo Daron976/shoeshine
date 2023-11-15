@@ -82,9 +82,17 @@ button {
   cursor: pointer;
 }
 
+.user-data a,
+.user-data button {
+  font-size: 1.5rem;
+  color: #00000098;
+}
+
 .navBtn {
+  color: #00000098;
   border: none;
   background: none;
+  font-size: 1.5rem;
 }
 
 .menuToggle {
@@ -155,6 +163,8 @@ button {
 }
 
 .removeBtn {
+  color: #0000004e;
+  font-size: 1.2rem;
   align-self: flex-start;
 }
 
@@ -281,6 +291,10 @@ footer a {
 
 .socialLinks {
   gap: 1rem;
+}
+
+.socialLinks a {
+  font-size: 1.5rem;
 }
 
 .footerRights {
